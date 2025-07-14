@@ -1,0 +1,74 @@
+# Help files
+HELP.md
+
+# Maven Wrapper JAR
+.mvn/wrapper/maven-wrapper.jar
+
+# Build folders
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### Spring Tool Suite (STS) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Eclipse ###
+*.classpath
+*.project
+
+### Gradle ###
+.gradle/
+build/
+
+### SonarQube Reports ###
+.sonar/
+scanner-report/
+report-task.txt
+sonar-report.json
+
+### Logs and Temporary files ###
+*.log
+*.tmp
+*.bak
+*.swp
+
+### OS-specific ###
+.DS_Store
+Thumbs.db
+
+### Local Environment ###
+.env
+*.local
+
+### Java Build Artifacts ###
+*.jar
+*.war
+*.ear
+
+### Test Output ###
+test-output/
