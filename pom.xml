@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.github.myfreeit</groupId>
     <artifactId>restful-tutorial-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>restful-tutorial-app</name>
     <description>restful-tutorial-app</description>
     <url/>
