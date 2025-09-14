@@ -19,7 +19,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "/clients")
-    public ResponseEntity<?> create(@RequestBody Client client) {
+    public ResponseEntity<Client> create(@RequestBody Client client) {
         clientService.create(client);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -43,7 +43,7 @@ public class ClientController {
     }
 
     @PutMapping(value = "/clients/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Client client) {
+    public ResponseEntity<Client> update(@PathVariable(name = "id") int id, @RequestBody Client client) {
         final boolean updated = clientService.update(client, id);
 
         return updated
@@ -52,7 +52,7 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/clients/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
+    public ResponseEntity<Client> delete(@PathVariable(name = "id") int id) {
         final boolean deleted = clientService.delete(id);
 
         return deleted
