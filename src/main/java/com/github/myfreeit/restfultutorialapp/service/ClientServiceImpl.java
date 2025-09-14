@@ -1,52 +1,56 @@
 package com.github.myfreeit.restfultutorialapp.service;
 
 import com.github.myfreeit.restfultutorialapp.model.Client;
+import com.github.myfreeit.restfultutorialapp.repository.ClientRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class ClientServiceImpl implements ClientService {
+    private final ClientRepository clientRepository;
 
-    // Customer storage.
-    private static final Map<Integer, Client> CLIENT_REPOSITORY_MAP = new HashMap<>();
-
-    // Variable for generating customer ID.
-    private static final AtomicInteger CLIENT_ID_HOLDER = new AtomicInteger();
+    public ClientServiceImpl(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
     @Override
+    @Transactional
     public void create(Client client) {
-        final int clientId = CLIENT_ID_HOLDER.incrementAndGet();
-        client.setId(clientId);
-        CLIENT_REPOSITORY_MAP.put(clientId, client);
+        clientRepository.save(client);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Client> readAll() {
-        return new ArrayList<>(CLIENT_REPOSITORY_MAP.values());
+        return clientRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Client read(int id) {
-        return CLIENT_REPOSITORY_MAP.get(id);
+        return clientRepository.getReferenceById(id);
     }
 
     @Override
+    @Transactional
     public boolean update(Client client, int id) {
-        if (CLIENT_REPOSITORY_MAP.containsKey(id)) {
+        if (clientRepository.existsById(id)) {
             client.setId(id);
-            CLIENT_REPOSITORY_MAP.put(id, client);
+            clientRepository.save(client);
             return true;
         }
         return false;
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
-        return CLIENT_REPOSITORY_MAP.remove(id) != null;
+        if (clientRepository.existsById(id)) {
+            clientRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
